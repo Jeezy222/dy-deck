@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>毕业生德育总结 - 砥砺前行，筑梦青春</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===========================================
+           CSS CUSTOM PROPERTIES (SWISS MODERN THEME)
+           =========================================== */
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f5;
+            --text-primary: #0a0a0a;
+            --text-secondary: #555555;
+            --accent: #ff3300;
+            --accent-light: rgba(255, 51, 0, 0.1);
+            --grid-line: rgba(0, 0, 0, 0.06);
+
+            --font-display: "Archivo", sans-serif;
+            --font-body: "Nunito", sans-serif;
+
+            --title-size: clamp(2rem, 5vw, 4rem);
+            --subtitle-size: clamp(1rem, 2vw, 1.5rem);
+            --body-size: clamp(0.8rem, 1.2vw, 1.05rem);
+            --small-size: clamp(0.7rem, 1vw, 0.9rem);
+
+            --slide-padding: clamp(1.5rem, 4vw, 4rem);
+            --content-gap: clamp(1rem, 2vw, 2rem);
+
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration-normal: 0.6s;
+        }
+
+        /* ===========================================
+           BASE STYLES
+           =========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+            font-family: var(--font-body);
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        /* ===========================================
+           VIEWPORT BASE (MANDATORY)
+           =========================================== */
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-height: 100%;
+            overflow: hidden;
+            padding: var(--slide-padding);
+            position: relative;
+            z-index: 2;
+        }
+
+        .card, .container, .content-box {
+            max-width: min(90vw, 1000px);
+            max-height: min(80vh, 700px);
+        }
+
+        .feature-list, .bullet-list {
+            gap: clamp(0.4rem, 1vh, 1rem);
+        }
+
+        .feature-list li, .bullet-list li {
+            font-size: var(--body-size);
+            line-height: 1.5;
+        }
+
+        img, .image-container {
+            max-width: 100%;
+            max-height: min(50vh, 400px);
+            object-fit: contain;
+        }
+
+        @media (max-height: 700px) {
+            :root {
+                --slide-padding: clamp(0.75rem, 3vw, 2rem);
+                --content-gap: clamp(0.4rem, 1.5vw, 1rem);
+            }
+        }
+
+        @media (max-height: 600px) {
+            :root {
+                --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem);
+                --content-gap: clamp(0.3rem, 1vw, 0.75rem);
+                --title-size: clamp(1.5rem, 4vw, 2.5rem);
+                --body-size: clamp(0.7rem, 1.2vw, 0.95rem);
+            }
+            .nav-dots, .keyboard-hint, .decorative {
+                display: none;
+            }
+        }
+
+        @media (max-height: 500px) {
+            :root {
+                --slide-padding: clamp(0.4rem, 2vw, 1rem);
+                --title-size: clamp(1.2rem, 3.5vw, 1.8rem);
+                --body-size: clamp(0.65rem, 1vw, 0.85rem);
+            }
+        }
+
+        @media (max-width: 600px) {
+            :root {
+                --title-size: clamp(1.5rem, 7vw, 2.5rem);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.2s !important;
+            }
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* ===========================================
+           SWISS MODERN DECORATIVE ELEMENTS
+           =========================================== */
+        .grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: clamp(40px, 5vw, 80px) clamp(40px, 5vw, 80px);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .accent-bar {
+            position: absolute;
+            background: var(--accent);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .accent-bar.top {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: clamp(4px, 0.6vh, 8px);
+        }
+
+        .accent-bar.left {
+            top: 0;
+            left: 0;
+            width: clamp(4px, 0.6vw, 8px);
+            height: 100%;
+        }
+
+        .accent-bar.corner {
+            top: var(--slide-padding);
+            left: var(--slide-padding);
+            width: clamp(30px, 4vw, 60px);
+            height: clamp(30px, 4vw, 60px);
+            border-left: clamp(3px, 0.4vw, 5px) solid var(--accent);
+            border-top: clamp(3px, 0.4vw, 5px) solid var(--accent);
+            background: transparent;
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: var(--slide-padding);
+            right: var(--slide-padding);
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 4rem);
+            font-weight: 800;
+            color: var(--accent);
+            opacity: 0.15;
+            line-height: 1;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        /* ===========================================
+           TYPOGRAPHY
+           =========================================== */
+        h1, h2, h3 {
+            font-family: var(--font-display);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: var(--title-size);
+        }
+
+        h2 {
+            font-size: var(--subtitle-size);
+        }
+
+        p, li {
+            font-family: var(--font-body);
+            font-size: var(--body-size);
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .label {
+            font-family: var(--font-display);
+            font-size: var(--small-size);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+        }
+
+        /* ===========================================
+           ANIMATIONS
+           =========================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity var(--duration-normal) var(--ease-out-expo),
+                        transform var(--duration-normal) var(--ease-out-expo);
+        }
+
+        .slide.visible .reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal:nth-child(1) { transition-delay: 0.1s; }
+        .reveal:nth-child(2) { transition-delay: 0.2s; }
+        .reveal:nth-child(3) { transition-delay: 0.3s; }
+        .reveal:nth-child(4) { transition-delay: 0.4s; }
+        .reveal:nth-child(5) { transition-delay: 0.5s; }
+        .reveal:nth-child(6) { transition-delay: 0.6s; }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity var(--duration-normal) var(--ease-out-expo),
+                        transform var(--duration-normal) var(--ease-out-expo);
+        }
+
+        .slide.visible .reveal-left {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity var(--duration-normal) var(--ease-out-expo),
+                        transform var(--duration-normal) var(--ease-out-expo);
+        }
+
+        .slide.visible .reveal-scale {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ===========================================
+           PROGRESS BAR
+           =========================================== */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: clamp(3px, 0.4vh, 5px);
+            background: var(--accent);
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+
+        /* ===========================================
+           NAVIGATION DOTS
+           =========================================== */
+        .nav-dots {
+            position: fixed;
+            right: clamp(0.8rem, 2vw, 1.5rem);
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.4rem, 1vh, 0.7rem);
+            z-index: 1000;
+        }
+
+        .nav-dot {
+            width: clamp(6px, 1vw, 10px);
+            height: clamp(6px, 1vw, 10px);
+            border-radius: 50%;
+            background: var(--text-secondary);
+            opacity: 0.3;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            padding: 0;
+        }
+
+        .nav-dot.active {
+            background: var(--accent);
+            opacity: 1;
+            transform: scale(1.3);
+        }
+
+        .nav-dot:hover {
+            opacity: 0.8;
+        }
+
+        /* ===========================================
+           SLIDE-SPECIFIC STYLES
+           =========================================== */
+
+        /* --- Slide 1: Title --- */
+        .title-slide .slide-content {
+            align-items: flex-start;
+            justify-content: center;
+            max-width: min(85vw, 900px);
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .title-slide h1 {
+            margin-bottom: var(--content-gap);
+        }
+
+        .title-slide .subtitle {
+            font-family: var(--font-display);
+            font-size: var(--subtitle-size);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: calc(var(--content-gap) * 1.5);
+        }
+
+        .title-slide .meta {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.3rem, 0.8vh, 0.6rem);
+            font-size: var(--body-size);
+            color: var(--text-secondary);
+        }
+
+        .title-slide .meta strong {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        /* --- Slide 2: TOC --- */
+        .toc-slide .slide-content {
+            max-width: min(85vw, 900px);
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: clamp(0.8rem, 2vw, 1.5rem);
+            margin-top: var(--content-gap);
+        }
+
+        .toc-item {
+            display: flex;
+            align-items: baseline;
+            gap: clamp(0.5rem, 1vw, 1rem);
+            padding: clamp(0.5rem, 1.2vw, 1rem);
+            border-left: 3px solid var(--accent);
+            background: var(--accent-light);
+        }
+
+        .toc-item .num {
+            font-family: var(--font-display);
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .toc-item .text {
+            font-family: var(--font-display);
+            font-size: var(--body-size);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 600px) {
+            .toc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* --- Content Slides --- */
+        .content-slide .slide-content {
+            max-width: min(85vw, 900px);
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .content-slide .section-header {
+            margin-bottom: var(--content-gap);
+        }
+
+        .content-slide .section-header h2 {
+            font-size: var(--title-size);
+            margin-bottom: clamp(0.3rem, 0.8vh, 0.5rem);
+        }
+
+        .content-slide ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .content-slide li {
+            position: relative;
+            padding-left: clamp(1.2rem, 2vw, 1.8rem);
+            margin-bottom: clamp(0.5rem, 1.2vh, 0.8rem);
+        }
+
+        .content-slide li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: clamp(0.5rem, 1.2vw, 0.7rem);
+            width: clamp(6px, 0.8vw, 10px);
+            height: clamp(6px, 0.8vw, 10px);
+            background: var(--accent);
+            border-radius: 0;
+        }
+
+        .content-slide .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--content-gap);
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .content-slide .two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* --- Quote Slides --- */
+        .quote-slide .slide-content {
+            align-items: center;
+            text-align: center;
+            max-width: min(80vw, 800px);
+            margin: 0 auto;
+        }
+
+        .quote-slide blockquote {
+            font-family: var(--font-display);
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 700;
+            line-height: 1.4;
+            color: var(--text-primary);
+            margin-bottom: var(--content-gap);
+            position: relative;
+        }
+
+        .quote-slide blockquote::before {
+            content: """;
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: var(--accent);
+            opacity: 0.3;
+            line-height: 1;
+            display: block;
+            margin-bottom: clamp(-1rem, -2vw, -2rem);
+        }
+
+        .quote-slide .attribution {
+            font-size: var(--body-size);
+            color: var(--text-secondary);
+        }
+
+        /* --- Closing Slide --- */
+        .closing-slide .slide-content {
+            align-items: center;
+            text-align: center;
+        }
+
+        .closing-slide h1 {
+            margin-bottom: var(--content-gap);
+        }
+
+        .closing-slide p {
+            max-width: min(70vw, 600px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Navigation Dots -->
+    <nav class="nav-dots" id="navDots"></nav>
+
+    <!-- ===========================================
+         SLIDE 1: TITLE
+         =========================================== -->
+    <section class="slide title-slide">
+        <div class="grid-bg"></div>
+        <div class="accent-bar corner"></div>
+        <div class="slide-content">
+            <div class="label reveal">毕业生德育总结报告</div>
+            <h1 class="reveal">砥砺前行<br>筑梦青春</h1>
+            <div class="subtitle reveal">德育答辩</div>
+            <div class="meta reveal">
+                <span><strong>姓名：</strong>李俊杰</span>
+                <span><strong>专业：</strong>软件工程（金融方向）222班</span>
+                <span><strong>学院：</strong>中澳智能制造学院（筹）（商学院）</span>
+                <span><strong>日期：</strong>2026年5月16日</span>
+            </div>
+        </div>
+        <div class="slide-number">01</div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE 2: TABLE OF CONTENTS
+         =========================================== -->
+    <section class="slide toc-slide">
+        <div class="grid-bg"></div>
+        <div class="accent-bar top"></div>
+        <div class="slide-content">
+            <div class="label reveal">Contents</div>
+            <h2 class="reveal" style="font-size: var(--title-size); margin-bottom: var(--content-gap);">汇报提纲</h2>
+            <div class="toc-grid">
+                <div class="toc-item reveal">
+                    <span class="num">01</span>
+                    <span class="text">个人基本情况简介</span>
+                </div>
+                <div class="toc-item reveal">
+                    <span class="num">02</span>
+                    <span class="text">坚定理想信念</span>
+                </div>
+                <div class="toc-item reveal">
+                    <span class="num">03</span>
+                    <span class="text">勤学善思笃行</span>
+                </div>
+                <div class="toc-item reveal">
+                    <span class="num">04</span>
+                    <span class="text">践行核心价值观</span>
+                </div>
+                <div class="toc-item reveal">
+                    <span class="num">05</span>
+                    <span class="text">传承红色文化</span>
+                </div>
+                <div class="toc-item reveal">
+                    <span class="num">06</span>
+                    <span class="text">锤炼心理素质</span>
+                </div>
+                <div class="toc-item reveal">
+                    <span class="num">07</span>
+                    <span class="text">未来展望</span>
+                </div>
+                <div class="toc-item reveal">
+                    <span class="num">08</span>
+                    <span class="text">结语致谢</span>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">02</div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE 3: PERSONAL INTRO
+         =========================================== -->
+    <section class="slide content-slide">
+        <div class="grid-bg"></div>
+        <div class="accent-bar left"></div>
+        <div class="slide-content">
+            <div class="section-header">
+                <div class="label reveal">01 / 个人简介</div>
+                <h2 class="reveal">基本情况</h2>
+            </div>
+            <ul>
+                <li class="reveal"><strong>姓名：</strong>李俊杰，男，软件工程（金融方向）222班学生，将于2026年7月毕业。</li>
+                <li class="reveal"><strong>学业表现：</strong>在校期间成绩中上，专业课程掌握良好，具备扎实的软件开发与金融交叉学科知识。</li>
+                <li class="reveal"><strong>实践经历：</strong>先后在银行实习，深入了解金融科技业务；勇于尝试创业，积累项目运营与团队管理经验。</li>
+                <li class="reveal"><strong>性格特质：</strong>性格开朗幽默、外向进取，善于团队合作，能够有效沟通协调，具备较强的学习能力和抗压能力。</li>
+                <li class="reveal"><strong>职业愿景：</strong>希望从事金融科技或软件工程相关工作，发挥专业优势，为实现中华民族伟大复兴贡献青春力量。</li>
+            </ul>
+        </div>
+        <div class="slide-number">03</div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE 4: IDEALS (PART 1)
+         =========================================== -->
+    <section class="slide content-slide">
+        <div class="grid-bg"></div>
+        <div class="accent-bar corner"></div>
+        <div class="slide-content">
+            <div class="section-header">
+                <div class="label reveal">02 / 理想信念</div>
+                <h2 class="reveal">坚定理想信念<br>筑牢思想根基</h2>
+            </div>
+            <ul>
+                <li class="reveal">积极向党组织靠拢，递交入党申请书，参加各类思想政治教育活动。</li>
+                <li class="reveal">学习习近平新时代中国特色社会主义思想，深刻认识新时代青年的使命与担当。</li>
+                <li class="reveal">日常坚持关注时事政治，利用学习强国APP、《人民日报》等提升理论水平。</li>
+                <li class="reveal">参加党课培训和主题党日活动，深入了解党的光辉历程，坚定永远跟党走的信念。</li>
+            </ul>
+        </div>
+        <div class="slide-number">04</div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE 5: ACADEMIC (PART 1)
+         =========================================== -->
+    <section class="slide content-slide">
+        <div class="grid-bg"></div>
+        <div class="accent-bar top"></div>
+        <div class="slide-content">
+            <div class="section-header">
+                <div class="label reveal">03 / 专业素养</div>
+                <h2 class="reveal">勤学善思笃行<br>提升专业素养</h2>
+            </div>
+            <div class="two-col">
+                <div class="reveal">
+                    <h3 style="font-family: var(--font-display); font-size: var(--h2-size); margin-bottom: var(--element-gap);">学业成绩</h3>
+                    <ul>
+                        <li>始终将学业放在首位，努力学习专业知识。</li>
+                        <li>课堂认真听讲、积极思考，课后及时复习。</li>
+                        <li>成绩稳步提升，多次获得奖学金。</li>
+                        <li>通过英语四六级和计算机等级考试。</li>
+                    </ul>
+                </div>
+                <div class="reveal">
+                    <h3 style="font-family: var(--font-display); font-size: var(--h2-size); margin-bottom: var(--element-gap);">实践创新</h3>
+                    <ul>
+                        <li>注重理论与实践结合，积极参加课程设计。</li>
+                        <li>参与专业实习和学科竞赛。</li>
+                        <li>参与科研项目，培养初步的科研思维。</li>
+                        <li>培养了创新能力和解决实际问题的能力。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">05</div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE 6: MORAL VALUES
+         =========================================== -->
+    <section class="slide content-slide">
+        <div class="grid-bg"></div>
+        <div class="accent-bar left"></div>
+        <div class="slide-content">
+            <div class="section-header">
+                <div class="label reveal">04 / 道德修养</div>
+                <h2 class="reveal">践行核心价值观<br>提升道德修养</h2>
+            </div>
+            <ul>
+                <li class="reveal">以社会主义核心价值观为引领，注重个人品德修养。</li>
+                <li class="reveal">诚实守信、尊重他人、团结友爱，营造和谐人际关系。</li>
+                <li class="reveal">关心同学、乐于助人，积极为班级和宿舍贡献力量。</li>
+                <li class="reveal">积极参加志愿服务活动，如迎新服务、社区支教、环保宣传等。</li>
+                <li class="reveal">践行"奉献、友爱、互助、进步"的志愿精神，坚定做一个对社会有用之人的信念。</li>
+            </ul>
+        </div>
+        <div class="slide-number">06</div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE 7: RED CULTURE
+         =========================================== -->
+    <section class="slide content-slide">
+        <div class="grid-bg"></div>
+        <div class="accent-bar corner"></div>
+        <div class="slide-content">
+            <div class="section-header">
+                <div class="label reveal">05 / 红色文化</div>
+                <h2 class="reveal">传承红色文化<br>弘扬优良传统</h2>
+            </div>
+            <ul>
+                <li class="reveal">江西是红色土地，充分利用地域优势参加红色文化教育活动。</li>
+                <li class="reveal">参观井冈山革命博物馆、南昌八一起义纪念馆等，聆听革命先烈事迹。</li>
+                <li class="reveal">深刻认识到红色政权、新中国、中国特色社会主义来之不易。</li>
+                <li class="reveal">作为新时代大学生，有责任传承红色基因，弘扬革命传统。</li>
+                <li class="reveal">为实现民族复兴贡献青春力量，让革命精神薪火相传。</li>
+            </ul>
+        </div>
+        <div class="slide-number">07</div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE 8: PSYCHOLOGY
+         =========================================== -->
+    <section class="slide content-slide">
+        <div class="grid-bg"></div>
+        <div class="accent-bar top"></div>
+        <div class="slide-content">
+            <div class="section-header">
+                <div class="label reveal">06 / 心理素质</div>
+                <h2 class="reveal">锤炼心理素质<br>塑造健全人格</h2>
+            </div>
+            <div class="two-col">
+                <div class="reveal">
+                    <h3 style="font-family: var(--font-display); font-size: var(--h2-size); margin-bottom: var(--element-gap);">心态调整</h3>
+                    <ul>
+                        <li>面对学业压力、人际困扰和未来迷茫，积极调整心态。</li>
+                        <li>主动寻求帮助，学会情绪管理和压力释放。</li>
+                        <li>学校心理健康教育中心提供了专业支持。</li>
+                    </ul>
+                </div>
+                <div class="reveal">
+                    <h3 style="font-family: var(--font-display); font-size: var(--h2-size); margin-bottom: var(--element-gap);">意志磨练</h3>
+                    <ul>
+                        <li>坚持体育锻炼，参加运动会、篮球赛等。</li>
+                        <li>增强体质、磨练意志。</li>
+                        <li>健全人格和良好心理素质是应对未来挑战的重要基础。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">08</div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE 9: FUTURE - REFLECTION
+         =========================================== -->
+    <section class="slide content-slide">
+        <div class="grid-bg"></div>
+        <div class="accent-bar left"></div>
+        <div class="slide-content">
+            <div class="section-header">
+                <div class="label reveal">07 / 未来展望</div>
+                <h2 class="reveal">正视不足<br>持续改进</h2>
+            </div>
+            <ul>
+                <li class="reveal"><strong>时间管理：</strong>有时存在拖延现象，需要进一步提高自律性和执行力。</li>
+                <li class="reveal"><strong>社会实践：</strong>参与面不够广泛，需要积极投身更多实践活动中增长才干。</li>
+                <li class="reveal"><strong>创新思维：</strong>在面对新问题时，创新思维方面还需要进一步加强。</li>
+                <li class="reveal"><strong>改进方向：</strong>制定科学合理的计划，保持开放心态，勇于接受新事物、新挑战。</li>
+            </ul>
+        </div>
+        <div class="slide-number">09</div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE 10: FUTURE - PLAN
+         =========================================== -->
+    <section class="slide content-slide">
+        <div class="grid-bg"></div>
+        <div class="accent-bar corner"></div>
+        <div class="slide-content">
+            <div class="section-header">
+                <div class="label reveal">07 / 未来展望</div>
+                <h2 class="reveal">规划未来<br>砥砺前行</h2>
+            </div>
+            <ul>
+                <li class="reveal"><strong>短期目标：</strong>制定科学合理的计划，提高执行力和自律性，克服拖延习惯。</li>
+                <li class="reveal"><strong>中期发展：</strong>积极投身社会实践，在实践中增长才干、积累经验，拓展视野。</li>
+                <li class="reveal"><strong>长期愿景：</strong>保持开放心态，勇于接受新事物、新挑战，不断提升创新能力和综合素质。</li>
+                <li class="reveal"><strong>职业方向：</strong>从事金融科技或软件工程相关工作，发挥专业优势，在岗位上不断突破。</li>
+            </ul>
+        </div>
+        <div class="slide-number">10</div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE 11: QUOTE
+         =========================================== -->
+    <section class="slide quote-slide">
+        <div class="grid-bg"></div>
+        <div class="accent-bar top"></div>
+        <div class="slide-content">
+            <blockquote class="reveal">
+                大学四年是我人生中最宝贵的时光。<br>
+                我收获了知识、友谊和成长，<br>
+                明确了人生方向。
+            </blockquote>
+            <div class="attribution reveal">
+                —— 即将踏上新征程，不忘初心，砥砺前行
+            </div>
+        </div>
+        <div class="slide-number">11</div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE 12: CLOSING
+         =========================================== -->
+    <section class="slide closing-slide">
+        <div class="grid-bg"></div>
+        <div class="accent-bar corner"></div>
+        <div class="slide-content">
+            <div class="label reveal">结语</div>
+            <h1 class="reveal">感谢聆听</h1>
+            <p class="reveal">
+                感谢学校的培养、老师的教导、同学的陪伴。<br>
+                即将踏上新征程，我将牢记<strong>"志存高远、责任为先"</strong>的校训，<br>
+                以实际行动书写无愧于时代的青春答卷。
+            </p>
+            <div class="meta reveal" style="margin-top: var(--content-gap); text-align: center;">
+                <span style="color: var(--text-secondary);">李俊杰 · 软件工程（金融方向）222班</span>
+            </div>
+        </div>
+        <div class="slide-number">12</div>
+    </section>
+
+    <script>
+        /* ===========================================
+           SLIDE PRESENTATION CONTROLLER
+           =========================================== */
+        class SlidePresentation {
+            constructor() {
+                this.slides = document.querySelectorAll(".slide");
+                this.currentSlide = 0;
+                this.totalSlides = this.slides.length;
+                this.isScrolling = false;
+                this.setupIntersectionObserver();
+                this.setupKeyboardNav();
+                this.setupTouchNav();
+                this.setupWheelNav();
+                this.setupProgressBar();
+                this.setupNavDots();
+            }
+
+            setupIntersectionObserver() {
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add("visible");
+                                this.currentSlide = Array.from(this.slides).indexOf(entry.target);
+                                this.updateProgressBar();
+                                this.updateNavDots();
+                            }
+                        });
+                    },
+                    { threshold: 0.5 }
+                );
+                this.slides.forEach((slide) => observer.observe(slide));
+            }
+
+            setupKeyboardNav() {
+                document.addEventListener("keydown", (e) => {
+                    if (e.target.getAttribute("contenteditable")) return;
+                    switch (e.key) {
+                        case "ArrowDown":
+                        case "ArrowRight":
+                        case " ":
+                        case "PageDown":
+                            e.preventDefault();
+                            this.nextSlide();
+                            break;
+                        case "ArrowUp":
+                        case "ArrowLeft":
+                        case "PageUp":
+                            e.preventDefault();
+                            this.prevSlide();
+                            break;
+                        case "Home":
+                            e.preventDefault();
+                            this.goToSlide(0);
+                            break;
+                        case "End":
+                            e.preventDefault();
+                            this.goToSlide(this.totalSlides - 1);
+                            break;
+                    }
+                });
+            }
+
+            setupTouchNav() {
+                let touchStartY = 0;
+                let touchEndY = 0;
+                const minSwipeDistance = 50;
+
+                document.addEventListener("touchstart", (e) => {
+                    touchStartY = e.changedTouches[0].screenY;
+                }, { passive: true });
+
+                document.addEventListener("touchend", (e) => {
+                    touchEndY = e.changedTouches[0].screenY;
+                    const diff = touchStartY - touchEndY;
+                    if (Math.abs(diff) > minSwipeDistance) {
+                        if (diff > 0) this.nextSlide();
+                        else this.prevSlide();
+                    }
+                }, { passive: true });
+            }
+
+            setupWheelNav() {
+                let wheelTimeout;
+                document.addEventListener("wheel", (e) => {
+                    if (this.isScrolling) return;
+                    clearTimeout(wheelTimeout);
+                    wheelTimeout = setTimeout(() => {
+                        if (e.deltaY > 30) this.nextSlide();
+                        else if (e.deltaY < -30) this.prevSlide();
+                    }, 50);
+                }, { passive: true });
+            }
+
+            setupProgressBar() {
+                this.progressBar = document.getElementById("progressBar");
+                this.updateProgressBar();
+            }
+
+            updateProgressBar() {
+                if (!this.progressBar) return;
+                const progress = ((this.currentSlide + 1) / this.totalSlides) * 100;
+                this.progressBar.style.width = progress + "%";
+            }
+
+            setupNavDots() {
+                this.navDotsContainer = document.getElementById("navDots");
+                if (!this.navDotsContainer) return;
+                this.navDotsContainer.innerHTML = "";
+                this.slides.forEach((_, index) => {
+                    const dot = document.createElement("button");
+                    dot.className = "nav-dot";
+                    dot.setAttribute("aria-label", `Go to slide ${index + 1}`);
+                    dot.addEventListener("click", () => this.goToSlide(index));
+                    this.navDotsContainer.appendChild(dot);
+                });
+                this.updateNavDots();
+            }
+
+            updateNavDots() {
+                const dots = this.navDotsContainer.querySelectorAll(".nav-dot");
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle("active", index === this.currentSlide);
+                });
+            }
+
+            nextSlide() {
+                if (this.currentSlide < this.totalSlides - 1) {
+                    this.goToSlide(this.currentSlide + 1);
+                }
+            }
+
+            prevSlide() {
+                if (this.currentSlide > 0) {
+                    this.goToSlide(this.currentSlide - 1);
+                }
+            }
+
+            goToSlide(index) {
+                if (index < 0 || index >= this.totalSlides) return;
+                this.isScrolling = true;
+                this.slides[index].scrollIntoView({ behavior: "smooth", block: "start" });
+                setTimeout(() => {
+                    this.isScrolling = false;
+                }, 600);
+            }
+        }
+
+        new SlidePresentation();
+    </script>
+</body>
+</html>
